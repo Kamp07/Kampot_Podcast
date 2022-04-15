@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="mt-2" th:insert="blocks/header :: header"></header>
+
+<div class="container marketing">
+    <!-- Three columns of text below the carousel -->
+    <div class="album py-5 bg-light bcolor">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col hvr-wobble-vertical" th:each="tvPod:${tvPodcasts}">
+
+                    <div class="card shadow-sm">
+                        <a th:href="@{/podcastsCom/} + ${tvPod.getKey()}">
+                            <img class="icon" th:src="${tvPod.getValue()}" alt="">
+                        </a>
+
+                        <div class="card-body rounded-bottom">
+                            <p class="card-text"><center th:text="${tvPod.getKey()}"></center></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="blocks/foooter :: footer"></footer>
+</body>
+</html>

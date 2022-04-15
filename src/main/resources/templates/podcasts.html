@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="mt-2" th:insert="blocks/header :: header"></header>
+
+<div class="container marketing">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4" th:each="casts : ${podcasts}">
+            <a  th:href="@{/podcasts/} + ${casts.id}" class="hvr-wobble-vertical">
+                <img class="icon" th:src="${casts.logoLink}" alt="">
+            </a>
+            <p th:text="${casts.name}"></p>
+            <p th:text="${casts.description}"></p>
+            <audio controls class="w-75">
+                <source th:src="${casts.link}" type="audio/mpeg">
+            </audio>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+
+<div sec:authorize="hasAuthority('ADMIN')">
+<form th:action="@{/podcasts-add}" method="post" class="form-control">
+    <input type="text" name="name" placeholder="Название" class="form-control"><br>
+    <input type="text" name="hosts" placeholder="Ведущие" class="form-control"><br>
+    <textarea name="description" placeholder="Описание" class="form-control"></textarea><br>
+    <input type="text" name="genre" placeholder="Жанр" class="form-control"><br>
+    <input type="text" name="podcastDuration" placeholder="Длительность" class="form-control"><br>
+    <input type="text" name="site" placeholder="Официальная станица" class="form-control"><br>
+    <input type="text" name="link" placeholder="Ссылка на файл" class="form-control"><br>
+    <input type="text" name="logoLink" placeholder="Ссылка на лого" class="form-control"><br>
+    <button type="submit" class="btn-close-white">Добавить</button>
+</form>
+</div>
+<footer th:replace="blocks/foooter :: footer"></footer>
+</body>
+</html>
