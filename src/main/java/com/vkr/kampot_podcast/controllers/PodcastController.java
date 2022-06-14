@@ -1,11 +1,8 @@
 package com.vkr.kampot_podcast.controllers;
 
 import com.vkr.kampot_podcast.models.Podcast;
-import com.vkr.kampot_podcast.models.Reviews;
-import com.vkr.kampot_podcast.models.User;
 import com.vkr.kampot_podcast.repository.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
 
 @Controller
 public class PodcastController {
@@ -31,8 +29,9 @@ public class PodcastController {
     }
 
     @PostMapping("/podcasts-add")
-    public String reviewsAdd(@RequestParam String name, @RequestParam String hosts, @RequestParam String description,
-                             @RequestParam String genre, @RequestParam String podcastDuration, @RequestParam String site, @RequestParam String link, @RequestParam String logoLink, Model model)
+    public String podcastsAdd(@RequestParam String name, @RequestParam String hosts, @RequestParam String description,
+                                @RequestParam String genre, @RequestParam String podcastDuration, @RequestParam String site,
+                                @RequestParam String link, @RequestParam String logoLink, Model model)
     {
         Podcast podcast = new Podcast(name, hosts, description, genre, podcastDuration, site, link, logoLink);
         podcastRepository.save(podcast);
@@ -51,7 +50,7 @@ public class PodcastController {
 
 
     @GetMapping("/podcasts/{id}/update")
-    public String reviewsUpdate(@PathVariable(value = "id") long id, Model model)
+    public String podcastUpdate(@PathVariable(value = "id") long id, Model model)
     {
         Optional<Podcast> podcasts = podcastRepository.findById(id);
         ArrayList<Podcast> podcast = new ArrayList<>();
@@ -62,8 +61,11 @@ public class PodcastController {
 
 
     @PostMapping("/podcasts/{id}/update")
-    public String podcastUpdateForm(@PathVariable(value = "id") long id, @RequestParam String name, @RequestParam String hosts, @RequestParam String description,
-                                    @RequestParam String genre, @RequestParam String podcastDuration, @RequestParam String site, @RequestParam String link, @RequestParam String logoLink, Model model)
+    public String podcastUpdateForm(@PathVariable(value = "id") long id, @RequestParam String name,
+                                    @RequestParam String hosts, @RequestParam String description,
+                                    @RequestParam String genre, @RequestParam String podcastDuration,
+                                    @RequestParam String site, @RequestParam String link,
+                                    @RequestParam String logoLink, Model model)
             throws ClassNotFoundException
     {
         Podcast podcast = podcastRepository.findById(id).orElseThrow(() -> new ClassNotFoundException());
@@ -80,7 +82,7 @@ public class PodcastController {
     }
 
     @PostMapping("/podcasts/{id}/delete")
-    public String reviewsDelete(@PathVariable(value = "id") long id, Model model) throws ClassNotFoundException
+    public String podcastDelete(@PathVariable(value = "id") long id, Model model) throws ClassNotFoundException
     {
         Podcast podcasts = podcastRepository.findById(id).orElseThrow(() -> new ClassNotFoundException());
         podcastRepository.delete(podcasts);
@@ -292,8 +294,9 @@ public class PodcastController {
     }
 
     @GetMapping("/podcastsCom/{name}")
-    public String PodcastsByName(@PathVariable(value = "name") String name, Model model)
+    public String podcastsByName(@PathVariable(value = "name") String name, Model model)
     {
+        int likes = 0;
         Iterable<Podcast> podcasts = podcastRepository.findAll();
         ArrayList<Podcast> podcastByName = new ArrayList<>();
         for (Podcast podcast : podcasts)

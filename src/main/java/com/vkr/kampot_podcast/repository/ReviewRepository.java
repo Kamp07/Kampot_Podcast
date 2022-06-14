@@ -1,9 +1,12 @@
+
+
 package com.vkr.kampot_podcast.repository;
 
 import com.vkr.kampot_podcast.models.Reviews;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReviewRepository extends CrudRepository<Reviews, Long>
+
+public interface ReviewRepository extends JpaRepository<Reviews, Long>
 {
 
 }

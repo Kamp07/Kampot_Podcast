@@ -10,16 +10,17 @@
     <header class="mt-2" th:insert="blocks/header :: header"></header>
 
     <div class="container mt-5">
-
-        <h1 th:text="${title}"></h1>
-
         <div sec:authorize="isFullyAuthenticated()">
-        <h3>Hi, <span sec:authentication="name"></span></h3>
+        <h3>Привет, <span sec:authentication="name"></span></h3>
         </div>
 
-        <p>Multiple lines of text that form the lede,
-            informing new readers quickly and efficiently about what’s most
-            interesting in this post’s contents.</p>
+        <p>
+            Я рад видеть тебя на платформе Kampot_Media.<br>
+            Здесь ты можешь найти найти подкаст на любой вкус или просто послушать радио, пока занимаешься важными делами (или не очень).<br>
+            Подкасты — это бесплатные цифровые аудиопередачи на любые темы.<br>
+            Для того, чтобы прослушать подкаст, выбери интресующую тебя категорию и кликни по названию.<br>
+            Приятного времяпрепровождения ♥.
+        </p>
     </div>
     <footer th:replace="blocks/foooter :: footer"></footer>
 </body>

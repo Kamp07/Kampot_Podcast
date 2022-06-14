@@ -30,7 +30,9 @@ public class ReviewsController {
     }
 
     @PostMapping("/reviews-add")
-    public String reviewsAdd(@AuthenticationPrincipal User user, @RequestParam String title, @RequestParam String text, Model model)
+    public String reviewsAdd(@AuthenticationPrincipal User user,
+        @RequestParam String title,
+        @RequestParam String text, Model model)
     {
         Reviews reviews = new Reviews(title, text, user);
         reviewRepository.save(reviews);

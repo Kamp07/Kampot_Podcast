@@ -1,12 +1,12 @@
 <div  xmlns:sec= "http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">Kampot_Podcasts</span>
+        <span class="fs-4 mx-">Kampot_Media</span>
     </a>
 
     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <a class="me-3 py-2 text-dark text-decoration-none" href="/">Home</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Radio</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="/radio">Radio</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/about">About</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/reviews">Reviews</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/podcasts"><span sec:authorize="hasAuthority('ADMIN')">Podcasts</span></a>

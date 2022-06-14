@@ -12,6 +12,22 @@
 
 <div class="container mt-5">
 
+    <h3 th:text="${title}"></h3>
+
+    <form th:action="@{/reviews-add}" method="post">
+        <input type="text" name="title"
+               placeholder="Кратко"
+               class="form-control w-25"><br>
+        <textarea name="text"
+                  placeholder="Полный отзыв"
+                  class="form-control w-25">
+        </textarea><br>
+        <button type="submit"
+                class="btn-close-white">
+            Добавить
+        </button>
+    </form>
+
     <h2 class="mt-2">Все отзывы</h2>
 
     <div th:each="row : ${reviews}">
@@ -21,13 +37,6 @@
         <a class="btn btn-warning" th:href="@{/reviews/} + ${row.id}">Детальнее</a>
     </div>
 
-    <h3 th:text="${title}"></h3>
-
-    <form th:action="@{/reviews-add}" method="post">
-        <input type="text" name="title" placeholder="Кратко" class="form-control"><br>
-        <textarea name="text" placeholder="Полный отзыв" class="form-control"></textarea><br>
-        <button type="submit" class="btn-close-white">Добавить</button>
-    </form>
 
 </div>
 

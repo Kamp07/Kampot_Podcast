@@ -71,4 +71,12 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/user";
     }
+
+    @GetMapping("/user/{login}/podcastLibrary")
+    public String podcastLibrary(@PathVariable(value = "login") String login, Model model) {
+        User user = userRepository.findByUsername(login);
+        Set<Podcast> podcasts =  user.getLikedPodcasts();
+        model.addAttribute("likedPodcasts", podcasts);
+        return "podcastLibrary";
+    }
 }

@@ -10,12 +10,12 @@
 <header class="mt-2" th:insert="blocks/header :: header"></header>
 
 <main class="container">
-    <h1>Registration</h1>
+    <h1 class="mx-5">Registration</h1><br>
     <form th:action="@{/reg}" method="post">
-        <input type="text" name="username" class="form-control" placeholder="UserName"><br>
-        <input type="email" name="email" class="form-control" placeholder="Email"><br>
-        <input type="password" name="password" class="form-control" placeholder="Password"><br>
-        <input type="submit" value="Registration" class="btn btn-light"/>
+        <input type="text" name="username" class="form-control w-25" placeholder="UserName"><br>
+        <input type="email" name="email" class="form-control w-25" placeholder="Email"><br>
+        <input type="password" name="password" class="form-control w-25" placeholder="Password"><br>
+        <input type="submit" value="Registration" class="btn loginbtn btn-info mx-2"/>
     </form>
 </main>
 
